@@ -2,15 +2,15 @@
 
 #include "../personaje.h"
 
-class Guerrero : public Personaje {
+class Magos : public Personaje {
     protected:
         TipoPersonaje tipo;
         int vida; 
-        int energia;
+        int mana;
         pair<shared_ptr<Arma>, shared_ptr<Arma>> armas;
         bool muerto;
     public:
-        Guerrero(TipoPersonaje tipo, int vida, int energia, bool muerto);
+        Magos(TipoPersonaje tipo, int vida, int mana, bool muerto);
 
         int obtenerVida() const override;
         TipoPersonaje obtenerTipo() const override;
