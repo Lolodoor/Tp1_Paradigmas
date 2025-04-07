@@ -5,7 +5,7 @@
 class Guerrero : public Personaje {
     protected:
         TipoPersonaje tipo;
-        int vida;
+        int vida; 
         int energia;
         pair<shared_ptr<Arma>, shared_ptr<Arma>> armas;
         bool muerto;

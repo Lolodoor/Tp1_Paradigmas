@@ -10,6 +10,7 @@ SRC = \
     ejercicio2/personajes/guerreros/gladiador/gladiador.cpp \
     ejercicio2/personajes/guerreros/guerreros.cpp \
     ejercicio2/personajes/guerreros/caballero/caballero.cpp \
+    ejercicio2/personajes/guerreros/mercenario/mercenario.cpp \
     ejercicio2/armas/magicas/amuleto/amuleto.cpp \
     ejercicio2/armas/magicas/libro_de_hechizos/libro_de_hechizos.cpp \
     ejercicio2/armas/magicas/pocion/pocion.cpp \
@@ -20,7 +21,9 @@ SRC = \
     ejercicio2/armas/combate/hacha_simple/hacha_simple.cpp \
     ejercicio2/armas/combate/hacha_doble/hacha_doble.cpp \
     ejercicio2/armas/combate/garrote/garrote.cpp \
-    ejercicio2/armas/combate/lanza/lanza.cpp
+    ejercicio2/armas/combate/lanza/lanza.cpp 
+
+
 
 # Archivos objeto
 OBJ = $(SRC:.cpp=.o)
