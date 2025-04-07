@@ -1,8 +1,6 @@
 #include "paladin.h"
 
-Paladin::Paladin() : Guerrero(TipoPersonaje::paladin, 100, 150, false) {
-    srand(time(nullptr));
-}
+Paladin::Paladin() : Guerrero(TipoPersonaje::paladin, 100, 150, false) {}
 
 
 int Paladin::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
@@ -29,7 +27,7 @@ int Paladin::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
             return 0;
         }
        
-        if (armaCombate->obtenerTipoArma() == TipoDeArma::espada) { // Cambia TipoArma por TipoDeArma
+        if (armaCombate->obtenerTipoArma() == TipoDeArma::espada) { 
             int danoBase = armaCombate->obtenerDano();
             int danoTotal = danoBase * 2; // Doble de daño
 

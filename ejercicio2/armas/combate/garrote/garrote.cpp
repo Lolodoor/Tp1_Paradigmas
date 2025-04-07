@@ -1,6 +1,6 @@
 #include "garrote.h"
 
-Garrote::Garrote() : Combate(ES::Combate, 15, 12, 1, TipoDeArma::garrote) {}
+Garrote::Garrote() : Combate(ES::Combate, 15, 1, 12, TipoDeArma::garrote) {}
 
 int Garrote::atacar() {
     return 15;

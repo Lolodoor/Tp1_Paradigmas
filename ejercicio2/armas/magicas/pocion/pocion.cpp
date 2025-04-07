@@ -1,7 +1,7 @@
 #include "pocion.h"
 
-Pocion::Pocion() : Magica(ES::Magica, 20, 15, 2, TipoDeArma::pocion) {}
+Pocion::Pocion() : Magica(ES::Magica, 20, 2, 15, TipoDeArma::pocion) {}
 
 int Pocion::atacar() {
-    return 20;
+    return dano;
 }

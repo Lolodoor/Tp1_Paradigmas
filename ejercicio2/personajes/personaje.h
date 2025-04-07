@@ -31,11 +31,12 @@ class Personaje {
     public:
         virtual int obtenerVida() const = 0;
         virtual TipoPersonaje obtenerTipo() const = 0;
-        virtual void recibirDano(int dano) = 0;
+        virtual void recibirDano(int dano) = 0; 
         virtual void curar(int vida) = 0;
         virtual pair<shared_ptr<Arma>, shared_ptr<Arma>> obtenerArmas() const = 0;
         virtual void equiparArma(shared_ptr<Arma> arma) = 0;
         virtual bool estaMuerto() = 0;
+        
 
         virtual ~Personaje() {}
 };

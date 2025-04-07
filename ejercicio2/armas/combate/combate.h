@@ -18,5 +18,5 @@ public:
     int obtenerVelocidadAtaque() const override;
     int obtenerCostoAtaque() const override;
     int atacar() override;
-    TipoDeArma obtenerTipoArma() const override; 
+    TipoDeArma obtenerTipoArma() const override; // Agregar override
 };

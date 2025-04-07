@@ -3,7 +3,7 @@
 #include "../combate.h"
 
 class Espada : public Combate {
-    public:
-        Espada();
-        int atacar() override;
+public:
+    Espada();
+    int atacar() override;
 };

@@ -1,7 +1,7 @@
 #include "amuleto.h"
 
-Amuleto::Amuleto() : Magica(ES::Magica, 0, 10, 1,TipoDeArma::baston) {}
+Amuleto::Amuleto() : Magica(ES::Magica, 0, 1, 10,TipoDeArma::baston) {}
 
 int Amuleto::atacar() {
-    return 0;
+    return dano;
 }

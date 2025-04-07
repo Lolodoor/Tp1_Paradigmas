@@ -7,7 +7,9 @@ SRC = \
     ejercicio2/main.cpp \
     ejercicio2/personajes/guerreros/barbaro/barbaro.cpp \
     ejercicio2/personajes/guerreros/paladin/paladin.cpp \
+    ejercicio2/personajes/guerreros/gladiador/gladiador.cpp \
     ejercicio2/personajes/guerreros/guerreros.cpp \
+    ejercicio2/personajes/guerreros/caballero/caballero.cpp \
     ejercicio2/armas/magicas/amuleto/amuleto.cpp \
     ejercicio2/armas/magicas/libro_de_hechizos/libro_de_hechizos.cpp \
     ejercicio2/armas/magicas/pocion/pocion.cpp \
