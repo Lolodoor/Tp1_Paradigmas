@@ -1,6 +1,7 @@
 #include "caballero.h"
 
-Caballero::Caballero() : Guerrero(TipoPersonaje::caballero, 100, 150, false) {}
+Caballero::Caballero(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Guerrero(TipoPersonaje::caballero, 100, 150, false, {arma1, arma2}) {}
 
 int Caballero::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
     if (!enemigo || !a) {

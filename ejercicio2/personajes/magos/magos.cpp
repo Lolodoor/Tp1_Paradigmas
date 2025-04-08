@@ -1,8 +1,8 @@
 #include "magos.h"
 
-
-Magos::Magos(TipoPersonaje tipo, int vida, int mana, bool muerto)
-    : tipo(tipo), vida(vida), mana(mana), armas(nullptr, nullptr), muerto(muerto) {}
+Magos::Magos(TipoPersonaje tipo, int vida, int mana, bool muerto, 
+             pair<shared_ptr<Arma>, shared_ptr<Arma>> armas)
+    : tipo(tipo), vida(vida), mana(mana), armas(armas), muerto(muerto) {}
 
 int Magos:: obtenerVida() const {return vida;}
 TipoPersonaje Magos:: obtenerTipo() const {return tipo;}

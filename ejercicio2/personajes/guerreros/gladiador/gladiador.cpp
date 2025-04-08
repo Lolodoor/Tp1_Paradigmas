@@ -1,6 +1,7 @@
 #include "gladiador.h"
 
-Gladiador::Gladiador() : Guerrero(TipoPersonaje::gladiador, 100, 150, false) {}
+Gladiador::Gladiador(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Guerrero(TipoPersonaje::gladiador, 100, 150, false, {arma1, arma2}) {}
 
 int Gladiador::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
     if (!enemigo || !a) {

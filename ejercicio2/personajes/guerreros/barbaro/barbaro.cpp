@@ -1,7 +1,7 @@
 #include "barbaro.h"
 
-
-barbaro::barbaro() : Guerrero(TipoPersonaje::barbaro, 100, 150, false) {
+barbaro::barbaro(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Guerrero(TipoPersonaje::barbaro, 100, 150, false, {arma1, arma2}) {
     srand(time(nullptr));
 }
 

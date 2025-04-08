@@ -1,7 +1,10 @@
 #include "hechicero.h"
 
 
-Hechicero::Hechicero() : Magos(TipoPersonaje::hechicero, 100, 200, false) {}
+Hechicero::Hechicero(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Magos(TipoPersonaje::hechicero, 100, 200, false, {arma1, arma2}) {
+    srand(time(nullptr));
+}
 
 int Hechicero::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
     if (!enemigo || !a) {

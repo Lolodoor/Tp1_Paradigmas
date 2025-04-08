@@ -1,6 +1,7 @@
 #include "mercenario.h"
 
-Mercenario::Mercenario() : Guerrero(TipoPersonaje::paladin, 100, 150, false) {}
+Mercenario::Mercenario(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Guerrero(TipoPersonaje::mercenario, 100, 150, false, {arma1, arma2}) {}
 
 int Mercenario::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
     if (!enemigo || !a) {

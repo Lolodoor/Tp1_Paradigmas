@@ -7,6 +7,6 @@
 
 class Mercenario : public Guerrero {
 public:
-    Mercenario();
+    Mercenario(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2); // Constructor actualizado
     int habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) override;
 };

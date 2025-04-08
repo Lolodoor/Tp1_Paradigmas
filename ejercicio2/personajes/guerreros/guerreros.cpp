@@ -1,8 +1,8 @@
 #include "guerreros.h"
 
-
-Guerrero::Guerrero(TipoPersonaje tipo, int vida, int mana, bool muerto)
-    : tipo(tipo), vida(vida), energia(mana), armas(nullptr, nullptr), muerto(muerto) {}
+Guerrero::Guerrero(TipoPersonaje tipo, int vida, int energia, bool muerto, 
+                   pair<shared_ptr<Arma>, shared_ptr<Arma>> armas)
+    : tipo(tipo), vida(vida), energia(energia), armas(armas), muerto(muerto) {}
 
 int Guerrero:: obtenerVida() const {return vida;}
 TipoPersonaje Guerrero:: obtenerTipo() const {return tipo;}

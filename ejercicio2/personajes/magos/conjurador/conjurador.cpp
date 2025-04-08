@@ -1,6 +1,7 @@
 #include "conjurador.h"
 
-Conjurador::Conjurador() : Magos(TipoPersonaje::conjurador, 100, 200, false) {
+Conjurador::Conjurador(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Magos(TipoPersonaje::conjurador, 100, 200, false, {arma1, arma2}) {
     srand(time(nullptr));
 }
 

@@ -1,6 +1,9 @@
 #include "brujo.h"
 
-Brujo::Brujo() : Magos(TipoPersonaje::brujo, 100, 200, false) {}
+Brujo::Brujo(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
+    : Magos(TipoPersonaje::brujo, 100, 200, false, {arma1, arma2}) {
+    srand(time(nullptr));
+}
 
 int Brujo::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
     if (!enemigo || !a) {

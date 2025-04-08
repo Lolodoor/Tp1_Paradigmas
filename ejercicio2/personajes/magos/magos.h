@@ -5,12 +5,13 @@
 class Magos : public Personaje {
     protected:
         TipoPersonaje tipo;
-        int vida; 
+        int vida;
         int mana;
         pair<shared_ptr<Arma>, shared_ptr<Arma>> armas;
         bool muerto;
     public:
-        Magos(TipoPersonaje tipo, int vida, int mana, bool muerto);
+        Magos(TipoPersonaje tipo, int vida, int mana, bool muerto, 
+              pair<shared_ptr<Arma>, shared_ptr<Arma>> armas); // Keep only this constructor
 
         int obtenerVida() const override;
         TipoPersonaje obtenerTipo() const override;
@@ -21,8 +22,6 @@ class Magos : public Personaje {
         bool estaMuerto() override;
         int obtenerMana() const;
         virtual int habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) = 0;
-        
-
 };
 
 

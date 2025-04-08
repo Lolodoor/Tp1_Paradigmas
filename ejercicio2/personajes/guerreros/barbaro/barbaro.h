@@ -6,7 +6,7 @@
 #include "../../../armas/magicas/magicas.h"
 
 class barbaro : public Guerrero {
-    public:
-    barbaro();
+public:
+    barbaro(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2); // Constructor actualizado
     int habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) override;
 };
