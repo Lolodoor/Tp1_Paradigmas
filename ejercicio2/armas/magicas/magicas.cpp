@@ -24,6 +24,6 @@ int Magica::atacar() {
 }
 
 TipoDeArma Magica::obtenerTipoArma() const {
-    return TipoArma; // Cambia esto según el tipo de arma mágica que estés implementando
+    return TipoArma; 
 }
 

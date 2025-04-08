@@ -4,6 +4,5 @@
 class Pocion : public Magica {
 public:
     Pocion();
-    int atacar();
 };
 

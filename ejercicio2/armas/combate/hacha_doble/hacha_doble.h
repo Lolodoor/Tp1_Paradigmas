@@ -5,5 +5,4 @@
 class HachaDoble : public Combate {
     public:
         HachaDoble();
-        int atacar() override;
 };

@@ -5,7 +5,6 @@
 class LibroDeHechizos : public Magica {
 public:
     LibroDeHechizos();
-    int atacar();
 };
 
 

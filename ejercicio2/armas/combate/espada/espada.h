@@ -5,5 +5,4 @@
 class Espada : public Combate {
 public:
     Espada();
-    int atacar() override;
 };

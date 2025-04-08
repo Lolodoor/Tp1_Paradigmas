@@ -5,7 +5,6 @@
 class Amuleto : public Magica {
 public:
     Amuleto();
-    int atacar();
 };
 
 

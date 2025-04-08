@@ -5,5 +5,4 @@
 class Baston : public Magica {
 public:
     Baston();
-    int atacar() override;
 };
