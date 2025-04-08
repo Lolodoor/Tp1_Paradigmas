@@ -21,9 +21,12 @@ SRC = \
     ejercicio2/armas/combate/hacha_simple/hacha_simple.cpp \
     ejercicio2/armas/combate/hacha_doble/hacha_doble.cpp \
     ejercicio2/armas/combate/garrote/garrote.cpp \
-    ejercicio2/armas/combate/lanza/lanza.cpp 
-
-
+    ejercicio2/armas/combate/lanza/lanza.cpp \
+    ejercicio2/personajes/magos/magos.cpp \
+    ejercicio2/personajes/magos/hechicero/hechicero.cpp \
+    ejercicio2/personajes/magos/conjurador/conjurador.cpp \
+    ejercicio2/personajes/magos/brujo/brujo.cpp \
+    ejercicio2/personajes/magos/nigromante/nigromante.cpp 
 
 # Archivos objeto
 OBJ = $(SRC:.cpp=.o)

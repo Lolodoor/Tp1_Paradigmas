@@ -19,7 +19,7 @@ class Magos : public Personaje {
         pair<shared_ptr<Arma>, shared_ptr<Arma>> obtenerArmas() const override;
         void equiparArma(shared_ptr<Arma> arma) override;
         bool estaMuerto() override;
-        int obtenerEnergia() const;
+        int obtenerMana() const;
         virtual int habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) = 0;
         
 

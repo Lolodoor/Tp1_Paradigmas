@@ -6,7 +6,7 @@ Magos::Magos(TipoPersonaje tipo, int vida, int mana, bool muerto)
 
 int Magos:: obtenerVida() const {return vida;}
 TipoPersonaje Magos:: obtenerTipo() const {return tipo;}
-int Magos:: obtenerEnergia() const {return mana;}
+int Magos:: obtenerMana() const {return mana;}
 bool Magos:: estaMuerto() {return muerto;}
 
 void Magos:: recibirDano(int dano) {

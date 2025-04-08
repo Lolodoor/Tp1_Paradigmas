@@ -18,10 +18,12 @@
 #include "armas/combate/lanza/lanza.h"
 #include "personajes/personaje.h"
 #include "personajes/guerreros/mercenario/mercenario.h"
+#include "personajes/magos/hechicero/hechicero.h"
+#include "personajes/magos/brujo/brujo.h"
+#include "personajes/magos/nigromante/nigromante.h"
 
 using namespace std;
 
 int main() {
-  
     return 0;
 }
