@@ -1,5 +1,6 @@
 #include "TostringNombres.h"
 
+
 string nombreArma(shared_ptr<Arma> arma) {
     if (!arma) return "Sin arma";
 
@@ -27,6 +28,7 @@ string nombrePersonaje(shared_ptr<Personaje> personaje) {
         case TipoPersonaje::barbaro: return "Bárbaro";
         case TipoPersonaje::caballero: return "Caballero";
         case TipoPersonaje::mercenario: return "Mercenario";
+        case TipoPersonaje::gladiador: return "Gladiador";
         default: return "Personaje desconocido";
     }
 }

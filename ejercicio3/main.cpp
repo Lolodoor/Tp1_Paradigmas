@@ -6,6 +6,10 @@ using namespace std;
 
 
 vector<vector<int>> generarAleatorio() {
+
+    // genera un número aleatorio entre 0 y 2 para el número de armas que tendrá el mago y el guerrero
+    // genera un numero entre 3 y 7 para el número de magos y guerreros que habrá
+
     vector<int> armasMago;
     vector<int> armasGuerrero;
 
@@ -30,9 +34,9 @@ vector<vector<int>> generarAleatorio() {
 }
 
 shared_ptr<Personaje> generarMagoAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
-    int magoIndex = rand() % 4;
+    int magoIndex = rand() % 4; // random para elegir entre los 4 tipos de magos
 
-    // Unpack the pair into arma1 and arma2
+    
     shared_ptr<Arma> arma1 = armas.first;
     shared_ptr<Arma> arma2 = armas.second;
 
@@ -51,9 +55,9 @@ shared_ptr<Personaje> generarMagoAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arm
 }
 
 shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
-    int guerreroIndex = rand() % 4; // Ajustar rango a 0-3 para evitar índices inválidos
+    int guerreroIndex = rand() % 5; // random para elegir entre los 5 tipos de guerreros
 
-    // Unpack the pair into arma1 and arma2
+    
     shared_ptr<Arma> arma1 = armas.first;
     shared_ptr<Arma> arma2 = armas.second;
 
@@ -66,6 +70,8 @@ shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr
             return make_shared<Caballero>(arma1, arma2);
         case 3:
             return make_shared<Mercenario>(arma1, arma2);
+        case 4:  
+            return make_shared<Gladiador>(arma1, arma2);
         default:
             // Este caso nunca debería ocurrir, pero lo manejamos por seguridad
             cout << "Error: Índice de guerrero inválido (" << guerreroIndex << ")." << endl;
@@ -76,7 +82,7 @@ shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr
 shared_ptr<Arma> generarArmaAleatoria() {
     int tipoArma = rand() % 2; // 0 para combate, 1 para mágica
     if (tipoArma == 0) {
-        int armaIndex = rand() % 5; 
+        int armaIndex = rand() % 5; // 5 tipos de armas de combate
         switch (armaIndex) {
             case 0: return make_shared<HachaSimple>();
             case 1: return make_shared<HachaDoble>();
@@ -85,7 +91,7 @@ shared_ptr<Arma> generarArmaAleatoria() {
             case 4: return make_shared<Garrote>();
         }
     } else {
-        int armaIndex = rand() % 4; 
+        int armaIndex = rand() % 4; // 4 tipos de armas mágicas
         switch (armaIndex) {
             case 0: return make_shared<Pocion>();
             case 1: return make_shared<Amuleto>();
@@ -100,7 +106,7 @@ int main() {
     // Inicializar la semilla de números aleatorios una sola vez
     srand(time(0));
 
-    // Generar los vectores aleatorios para magos y guerreros
+    // Generar los vectores aleatorios para magos y guerreros para ver cuántos se crean y cuantas armas tienen
     vector<vector<int>> armasConfig = generarAleatorio();
     vector<int> magosConfig = armasConfig[0];
     vector<int> guerrerosConfig = armasConfig[1];
