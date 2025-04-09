@@ -11,7 +11,7 @@ class Magos : public Personaje {
         bool muerto;
     public:
         Magos(TipoPersonaje tipo, int vida, int mana, bool muerto, 
-              pair<shared_ptr<Arma>, shared_ptr<Arma>> armas); // Keep only this constructor
+              pair<shared_ptr<Arma>, shared_ptr<Arma>> armas);
 
         int obtenerVida() const override;
         TipoPersonaje obtenerTipo() const override;

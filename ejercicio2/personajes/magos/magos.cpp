@@ -4,25 +4,34 @@ Magos::Magos(TipoPersonaje tipo, int vida, int mana, bool muerto,
              pair<shared_ptr<Arma>, shared_ptr<Arma>> armas)
     : tipo(tipo), vida(vida), mana(mana), armas(armas), muerto(muerto) {}
 
-int Magos:: obtenerVida() const {return vida;}
-TipoPersonaje Magos:: obtenerTipo() const {return tipo;}
-int Magos:: obtenerMana() const {return mana;}
-bool Magos:: estaMuerto() {return muerto;}
+    
+int Magos::obtenerVida() const {
+    return vida;
+}
+TipoPersonaje Magos::obtenerTipo() const {
+    return tipo;
+}
+int Magos::obtenerMana() const {
+    return mana;
+}
+bool Magos::estaMuerto() {
+    return muerto;
+}
 
-void Magos:: recibirDano(int dano) {
+void Magos::recibirDano(int dano) {
     vida -= dano;
     if (vida <= 0) {
         muerto = true;
     }
 }
-void Magos:: curar(int curacion) {
+void Magos::curar(int curacion) {
     vida += curacion;
     if (vida > 100) {
         vida = 100; 
     }
 }
 
-void Magos:: equiparArma(shared_ptr<Arma> arma) {
+void Magos::equiparArma(shared_ptr<Arma> arma) {
     if (armas.first == nullptr) {
         armas.first = arma;
     } else if (armas.second == nullptr) {

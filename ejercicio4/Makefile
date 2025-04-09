@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -g
 SRC = main.cpp \
-    factory/personajeFactory.cpp \
-    TostringNombres.cpp \
+    ../ejercicio3/factory/personajeFactory.cpp \
+    ../ejercicio3/TostringNombres.cpp \
     ../ejercicio2/personajes/guerreros/barbaro/barbaro.cpp \
     ../ejercicio2/personajes/guerreros/paladin/paladin.cpp \
     ../ejercicio2/personajes/guerreros/gladiador/gladiador.cpp \
