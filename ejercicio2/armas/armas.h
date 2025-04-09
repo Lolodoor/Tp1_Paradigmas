@@ -18,5 +18,6 @@ public:
     virtual int obtenerCostoAtaque() const = 0;
     virtual int atacar() = 0;
     virtual TipoDeArma obtenerTipoArma() const = 0; 
+    virtual int obtenerPeso() const = 0;
     virtual ~Arma() {}
 };

@@ -1,7 +1,7 @@
 #include "magicas.h"
 
-Magica::Magica(ES tipo, int dano, int velocidad, int costo, TipoDeArma tipoArma)
-    : tipo(tipo), dano(dano), velocidadAtaque(velocidad), costoAtaque(costo), TipoArma(tipoArma) {}
+Magica::Magica(ES tipo, int dano, int velocidad, int costo,int peso, TipoDeArma tipoArma)
+    : tipo(tipo), dano(dano), velocidadAtaque(velocidad), costoAtaque(costo),peso(peso), TipoArma(tipoArma) {}
 
 ES Magica::obtenerTipo() const {
     return tipo;
@@ -20,10 +20,15 @@ int Magica::obtenerCostoAtaque() const {
 }
 
 int Magica::atacar() {
+    cout << "Atacando con " << static_cast<int>(TipoArma) << endl;
     return dano;
 }
 
 TipoDeArma Magica::obtenerTipoArma() const {
     return TipoArma; 
+}
+
+int Magica::obtenerPeso() const {
+    return peso;
 }
 

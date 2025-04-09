@@ -1,5 +1,5 @@
 #include "baston.h"
 
-Baston::Baston() : Magica(ES::Magica, 8, 4, 8, TipoDeArma:: baston) {} 
+Baston::Baston() : Magica(ES::Magica, 8, 4, 8, 10, TipoDeArma:: baston) {} 
 
 
