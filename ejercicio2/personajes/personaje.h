@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <ctime>
 
-class Arma;
+class Arma; 
 
 #include "../armas/armas.h"
 
@@ -25,7 +25,17 @@ enum class TipoDeArma {
     lanza, 
     garrote
 };
-enum class TipoPersonaje {hechicero, conjurador, brujo, nigromante, gladiador, paladin, caballero, mercenario, barbaro};
+enum class TipoPersonaje {hechicero, 
+    conjurador, 
+    brujo, 
+    nigromante, 
+    gladiador, 
+    paladin, 
+    caballero, 
+    mercenario, 
+    barbaro
+};
+
 
 class Personaje {
     public:

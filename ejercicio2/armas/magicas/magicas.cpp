@@ -20,7 +20,7 @@ int Magica::obtenerCostoAtaque() const {
 }
 
 int Magica::atacar() {
-    cout << "Atacando con " << static_cast<int>(TipoArma) << endl;
+    cout << "Atacando con " << dano << " de dano" << endl;
     return dano;
 }
 

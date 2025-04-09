@@ -22,7 +22,7 @@ int Combate::obtenerCostoAtaque() const {
 }
 
 int Combate::atacar() {
-    cout << "Atacando con " << static_cast<int>(tipoArma) << endl;
+    cout << "Atacando con " << dano << " de daño." << endl;
     return dano;
 }
 
