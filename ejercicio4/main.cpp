@@ -51,7 +51,7 @@ shared_ptr<Personaje> crearPersonajeRival() {
     srand(static_cast<unsigned int>(time(0))); 
     TipoPersonaje tipo = static_cast<TipoPersonaje>(rand() % 9); 
     shared_ptr<Arma> arma = PersonajeFactory::crearArma(static_cast<TipoDeArma>(rand() % 9));
-    return PersonajeFactory::crearPersonaje(tipo, {arma, nullptr});
+    return PersonajeFactory::crearPersonajeArmado(tipo, {arma, nullptr});
 }
 
 shared_ptr<Arma> crearArmaJugador() {
@@ -107,15 +107,15 @@ shared_ptr<Personaje> crearPersonajeJugador() {
     }
     switch (opcion) {
         // segun lo que elige el jugador se crea ese personaje con el arma que eligio antes
-        case 1: return PersonajeFactory::crearPersonaje(TipoPersonaje::barbaro, {arma, nullptr});
-        case 2: return PersonajeFactory::crearPersonaje(TipoPersonaje::paladin, {arma, nullptr});
-        case 3: return PersonajeFactory::crearPersonaje(TipoPersonaje::gladiador, {arma, nullptr});
-        case 4: return PersonajeFactory::crearPersonaje(TipoPersonaje::caballero, {arma, nullptr});
-        case 5: return PersonajeFactory::crearPersonaje(TipoPersonaje::mercenario, {arma, nullptr});
-        case 6: return PersonajeFactory::crearPersonaje(TipoPersonaje::hechicero, {arma, nullptr});
-        case 7: return PersonajeFactory::crearPersonaje(TipoPersonaje::conjurador, {arma, nullptr});
-        case 8: return PersonajeFactory::crearPersonaje(TipoPersonaje::brujo, {arma, nullptr});
-        case 9: return PersonajeFactory::crearPersonaje(TipoPersonaje::nigromante, {arma, nullptr});
+        case 1: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::barbaro, {arma, nullptr});
+        case 2: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::paladin, {arma, nullptr});
+        case 3: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::gladiador, {arma, nullptr});
+        case 4: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::caballero, {arma, nullptr});
+        case 5: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::mercenario, {arma, nullptr});
+        case 6: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::hechicero, {arma, nullptr});
+        case 7: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::conjurador, {arma, nullptr});
+        case 8: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::brujo, {arma, nullptr});
+        case 9: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::nigromante, {arma, nullptr});
         default:
             cout << "Opción inválida.\n";
             return nullptr;
@@ -126,7 +126,7 @@ void resolverRonda(shared_ptr<Personaje> jugador1, shared_ptr<Personaje> jugador
     const int DAMAGE = 10; 
 
     if (ataque1 == ataque2) {
-        cout << "Ambos jugadores eligieron " << AtaqueToString(ataque1) << ". No hay daño esta ronda.\n";
+        cout << "Ambos jugadores eligieron " << AtaqueToString(ataque1) << ". No hay daño esta ronda.\n\n";
         cout << nombrePersonaje(jugador1) << " tiene " << jugador1->obtenerVida() << " HP y " 
              << nombrePersonaje(jugador2) << " tiene " << jugador2->obtenerVida() << " HP.\n";
         return;

@@ -72,12 +72,12 @@ int main() {
     cout << "Peso del bastón: " << baston->obtenerPeso() << endl;
     
     // Obtener tipos de armas
-    cout << "Tipo de arma (espada): " << static_cast<int>(espada->obtenerTipoArma()) << endl;
+    cout << "Tipo de arma (espada): " << static_cast<int>(espada->obtenerTipoArma()) << endl; // esto me va a devolver un numero por el enum
     cout << "Tipo de arma (bastón): " << static_cast<int>(baston->obtenerTipoArma()) << endl;
     
     // Probar stats de personajes
     cout << "\nStats de personajes:" << endl;
-    cout << "Tipo de personaje (Bárbaro): " << static_cast<int>(Barbaro->obtenerTipo()) << endl;
+    cout << "Tipo de personaje (Bárbaro): " << static_cast<int>(Barbaro->obtenerTipo()) << endl; // esto me va a devolver un numero por el enum
     cout << "Tipo de personaje (Hechicero): " << static_cast<int>(hechicero->obtenerTipo()) << endl;
     
     // Probar velocidad y costo de ataque de armas
