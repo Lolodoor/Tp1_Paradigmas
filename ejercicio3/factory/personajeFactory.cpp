@@ -26,7 +26,33 @@ shared_ptr<Arma> PersonajeFactory::crearArma(TipoDeArma a) {
     }
 }
 
-shared_ptr<Personaje> PersonajeFactory::crearPersonaje(TipoPersonaje p, pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
+shared_ptr<Personaje> PersonajeFactory::crearPersonaje(TipoPersonaje p) {
+    switch (p) {
+        case TipoPersonaje::barbaro:
+            return make_shared<barbaro>(nullptr, nullptr);
+        case TipoPersonaje::paladin:
+            return make_shared<Paladin>(nullptr, nullptr);
+        case TipoPersonaje::gladiador:
+            return make_shared<Gladiador>(nullptr, nullptr);
+        case TipoPersonaje::caballero:
+            return make_shared<Caballero>(nullptr, nullptr);
+        case TipoPersonaje::mercenario:
+            return make_shared<Mercenario>(nullptr, nullptr);
+        case TipoPersonaje::hechicero:
+            return make_shared<Hechicero>(nullptr, nullptr);
+        case TipoPersonaje::conjurador:
+            return make_shared<Conjurador>(nullptr, nullptr);
+        case TipoPersonaje::brujo:
+            return make_shared<Brujo>(nullptr, nullptr);
+        case TipoPersonaje::nigromante:
+            return make_shared<Nigromante>(nullptr, nullptr);
+        default:
+            cout << "Error: Tipo de personaje no reconocido." << endl;
+            return nullptr;
+    }
+}
+
+shared_ptr<Personaje> PersonajeFactory::crearPersonajeArmado(TipoPersonaje p, pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
     switch (p) {
         case TipoPersonaje::barbaro:
             return make_shared<barbaro>(armas.first, armas.second);
