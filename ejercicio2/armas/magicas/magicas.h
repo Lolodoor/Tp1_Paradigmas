@@ -20,4 +20,5 @@ public:
     int atacar() override;
     TipoDeArma obtenerTipoArma() const override; 
     int obtenerPeso() const override;
+    virtual int habilidadMagica() = 0;
 };

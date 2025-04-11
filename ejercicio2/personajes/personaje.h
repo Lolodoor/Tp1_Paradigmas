@@ -25,7 +25,8 @@ enum class TipoDeArma {
     lanza, 
     garrote
 };
-enum class TipoPersonaje {hechicero, 
+enum class TipoPersonaje {
+    hechicero, 
     conjurador, 
     brujo, 
     nigromante, 

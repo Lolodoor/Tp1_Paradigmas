@@ -24,68 +24,74 @@
 
 using namespace std;
 
-// para mostrar que compila bien todo
 int main() {
-    // Crear armas primero
-    auto espada = make_shared<Espada>();
+    // Crear armas
     auto baston = make_shared<Baston>();
+    auto espada = make_shared<Espada>();
     
-    // Crear personajes con sus armas
-    auto Barbaro = make_shared<barbaro>(espada, nullptr);  // Segunda arma null por ahora
-    auto hechicero = make_shared<Hechicero>(baston, nullptr);  // Segunda arma null por ahora
+    // Crear personajes
+    auto hechicero = make_shared<Hechicero>(baston, nullptr);
+    auto Barbaro = make_shared<barbaro>(espada, nullptr);
     
-    cout << "Estado inicial:" << endl;
-    cout << "Vida del bárbaro: " << Barbaro->obtenerVida() << endl;
-    cout << "Vida del hechicero: " << hechicero->obtenerVida() << endl;
+    // Pruebas de armas
+    cout << "\n=== Pruebas de Armas ===" << endl;
+    cout << "Bastón - Arma Mágica:" << endl;
+    cout << "Tipo: " << static_cast<int>(baston->obtenerTipo()) << endl; // da un numero por el enum pero prueba que funciona
+    cout << "Daño: " << baston->obtenerDano() << endl;
+    cout << "Velocidad de ataque: " << baston->obtenerVelocidadAtaque() << endl;
+    cout << "Costo de ataque: " << baston->obtenerCostoAtaque() << endl;
+    cout << "Peso: " << baston->obtenerPeso() << endl;
+    cout << "Ataque: " << baston->atacar() << endl;
+
+    cout << "\nEspada - Arma de Combate:" << endl;
+    cout << "Tipo: " << static_cast<int>(espada->obtenerTipo()) << endl; // da un numero por el enum pero prueba que funciona
+    cout << "Daño: " << espada->obtenerDano() << endl;
+    cout << "Velocidad de ataque: " << espada->obtenerVelocidadAtaque() << endl;
+    cout << "Costo de ataque: " << espada->obtenerCostoAtaque() << endl;
+    cout << "Peso: " << espada->obtenerPeso() << endl;
+    cout << "Ataque: " << espada->atacar() << endl;
     
-    // Probar ataques
-    int danoEspada = espada->atacar();
-    int danoBaston = baston->atacar();
-    
-    cout << "\nPrueba de daño:" << endl;
-    cout << "Daño de espada: " << danoEspada << endl;
-    cout << "Daño de bastón: " << danoBaston << endl;
-    
-    // Aplicar daño
-    hechicero->recibirDano(danoEspada);
-    cout << "Vida del hechicero después de recibir daño: " << hechicero->obtenerVida() << endl;
-    
-    // Probar curación
+    // Pruebas de personajes
+    cout << "\n=== Pruebas de Personajes ===" << endl;
+    cout << "Hechicero:" << endl;
+    cout << "Vida: " << hechicero->obtenerVida() << endl;
+    cout << "Tipo: " << static_cast<int>(hechicero->obtenerTipo()) << endl; // da un numero por el enum pero prueba que funciona
+    hechicero->recibirDano(30);
+    cout << "Vida después de daño: " << hechicero->obtenerVida() << endl;
     hechicero->curar(20);
-    cout << "Vida del hechicero después de curarse: " << hechicero->obtenerVida() << endl;
+    cout << "Vida después de curación: " << hechicero->obtenerVida() << endl;
+    cout << "¿Está muerto?: " << (hechicero->estaMuerto() ? "Sí" : "No") << endl;
     
-    // Verificar estado
-    cout << "\nEstado del hechicero:" << endl;
-    cout << "¿Está muerto? " << (hechicero->estaMuerto() ? "Sí" : "No") << endl;
-    
+    cout << "\nBárbaro:" << endl;
+    cout << "Vida: " << Barbaro->obtenerVida() << endl;
+    cout << "Tipo: " << static_cast<int>(Barbaro->obtenerTipo()) << endl; // da un numero por el enum pero prueba que funciona
+    Barbaro->recibirDano(40);
+    cout << "Vida después de daño: " << Barbaro->obtenerVida() << endl;
+    Barbaro->curar(15);
+    cout << "Vida después de curación: " << Barbaro->obtenerVida() << endl;
+    cout << "¿Está muerto?: " << (Barbaro->estaMuerto() ? "Sí" : "No") << endl;
+
     // Probar habilidad del bárbaro
-    cout << "\nProbando habilidad del bárbaro (Furia):" << endl;
-    cout << "Daño normal de espada: " << espada->atacar() << endl;
-    
+    cout << "\n=== Prueba de Habilidades ===" << endl;
+    cout << "Habilidad Bárbaro contra Hechicero:" << endl;
     int danoHabilidad = Barbaro->habilidad(hechicero, espada);
-    cout << "Daño con Furia activada: " << danoHabilidad << endl;
-    cout << "Vida del hechicero después de la Furia: " << hechicero->obtenerVida() << endl;
+    cout << "Daño causado por habilidad del bárbaro: " << danoHabilidad << endl;
+
+    // Probar habilidad del hechicero
+    cout << "\nHabilidad Hechicero contra Bárbaro:" << endl;
+    danoHabilidad = hechicero->habilidad(Barbaro, baston);
+    cout << "Daño causado por habilidad del hechicero: " << danoHabilidad << endl;
+
+    // Probar habilidades de armas
+    cout << "\n=== Prueba de Habilidades de Armas ===" << endl;
     
-    // Probar funciones adicionales
-    cout << "\nPruebas adicionales:" << endl;
-    cout << "Peso de la espada: " << espada->obtenerPeso() << endl;
-    cout << "Peso del bastón: " << baston->obtenerPeso() << endl;
+    cout << "Bastón:" << endl;
+    cout << "Bola de fuego: " << baston->bolaDeFuego() << " de daño" << endl;
+    cout << "Habilidad mágica: " << baston->habilidadMagica() << " de daño" << endl;
     
-    // Obtener tipos de armas
-    cout << "Tipo de arma (espada): " << static_cast<int>(espada->obtenerTipoArma()) << endl; // esto me va a devolver un numero por el enum
-    cout << "Tipo de arma (bastón): " << static_cast<int>(baston->obtenerTipoArma()) << endl;
-    
-    // Probar stats de personajes
-    cout << "\nStats de personajes:" << endl;
-    cout << "Tipo de personaje (Bárbaro): " << static_cast<int>(Barbaro->obtenerTipo()) << endl; // esto me va a devolver un numero por el enum
-    cout << "Tipo de personaje (Hechicero): " << static_cast<int>(hechicero->obtenerTipo()) << endl;
-    
-    // Probar velocidad y costo de ataque de armas
-    cout << "\nStats de armas:" << endl;
-    cout << "Velocidad de ataque (espada): " << espada->obtenerVelocidadAtaque() << endl;
-    cout << "Costo de ataque (espada): " << espada->obtenerCostoAtaque() << endl;
-    cout << "Velocidad de ataque (bastón): " << baston->obtenerVelocidadAtaque() << endl;
-    cout << "Costo de ataque (bastón): " << baston->obtenerCostoAtaque() << endl;
-    
+    cout << "\nEspada:" << endl;
+    cout << "Filo" << espada->filo() << " de daño" << endl;
+    cout << "Habilidad de combate: " << espada->ataqueEspecial() << " de daño" << endl;
+
     return 0;
 }

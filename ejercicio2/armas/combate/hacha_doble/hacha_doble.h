@@ -5,4 +5,6 @@
 class HachaDoble : public Combate {
     public:
         HachaDoble();
+        int ataqueEspecial() override;
+        int torbellino() const;
 };

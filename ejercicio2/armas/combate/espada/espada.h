@@ -5,4 +5,6 @@
 class Espada : public Combate {
 public:
     Espada();
+    int ataqueEspecial() override;
+    int filo() const;
 };

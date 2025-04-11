@@ -33,3 +33,4 @@ TipoDeArma Combate::obtenerTipoArma() const {
 int Combate::obtenerPeso() const {
     return peso;
 }
+
