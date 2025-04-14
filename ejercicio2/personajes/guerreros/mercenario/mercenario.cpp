@@ -34,13 +34,13 @@ int Mercenario::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
 
     int danoReducido = 0;
     if (opcion == 1) {
-        int curacion = 20; // Cantidad de vida que se cura
+        int curacion = 20; 
         this->curar(curacion); // Cura al mercenario
         danoReducido = static_cast<int>(danoBase * 0.3); // Reduce el 30% del daño base
     }
 
     int danoTotal = danoBase - danoReducido;
-    if (danoTotal < 0) danoTotal = 0; // Asegurarse de que el daño no sea negativo
+    if (danoTotal < 0) danoTotal = 0; 
     enemigo->recibirDano(danoTotal);
 
     // Mostrar mensajes para verificar el comportamiento

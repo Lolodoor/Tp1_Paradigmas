@@ -26,11 +26,11 @@ int Caballero::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
         int danoInfligido = danoBase; 
         enemigo->recibirDano(danoInfligido);
 
-        // 30% chance to regenerate energy
+        // 30% de probabilidad de regenerar energía
         if (rand() % 10 < 3) {
             int energiaActual = this->obtenerEnergia();
             int energiaRegenerada = energiaActual * 0.15; // Regenera 15% de energía
-            energia += energiaRegenerada; // Sumar la energía regenerada
+            energia += energiaRegenerada; 
             if (energia > 150) energia = 150; // Limitar la energía al máximo
             cout << "El caballero inflige " << danoInfligido << " de daño y regenera " 
                  << energiaRegenerada << " de energía." << endl;
@@ -56,11 +56,11 @@ int Caballero::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
         int danoInfligido = danoBase; 
         enemigo->recibirDano(danoInfligido);
 
-        // 30% chance to regenerate energy
+        
         if (rand() % 10 < 3) {
             int energiaActual = this->obtenerEnergia();
             int energiaRegenerada = energiaActual * 0.2;  // Regenera 20% de energía
-            energia += energiaRegenerada; // Sumar la energía regenerada
+            energia += energiaRegenerada; 
             if (energia > 150) energia = 150; // Limitar la energía al máximo
             cout << "El caballero inflige " << danoInfligido << " de daño y regenera " 
                  << energiaRegenerada << " de energía." << endl;
