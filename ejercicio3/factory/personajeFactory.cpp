@@ -1,4 +1,4 @@
-#include "personajeFactory.h"
+#include "PersonajeFactory.h"
 
 shared_ptr<Arma> PersonajeFactory::crearArma(TipoDeArma a) {
     switch (a) {
