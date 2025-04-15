@@ -8,7 +8,7 @@
 #include <ctime>
 #include "../ejercicio2/personajes/personaje.h"
 #include "../ejercicio2/armas/armas.h"
-#include "factory/personajeFactory.h"
+#include "factory/PersonajeFactory.h"
 #include "TostringNombres.h"
 
 using namespace std;
