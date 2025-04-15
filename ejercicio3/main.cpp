@@ -1,4 +1,4 @@
-#include "factory/personajeFactory.h"
+#include "factory/PersonajeFactory.h"
 #include "main.h"
 #include <iostream>
 
