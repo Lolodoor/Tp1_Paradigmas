@@ -33,7 +33,7 @@ vector<vector<int>> generarAleatorio() {
     return armas;
 }
 
-shared_ptr<Personaje> generarMagoAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
+shared_ptr<Personaje> generarMagoAleatorio(pair<unique_ptr<Arma>, unique_ptr<Arma>> armas) {
     vector<TipoPersonaje> tiposMagos = {
         TipoPersonaje::hechicero,
         TipoPersonaje::nigromante,
@@ -42,10 +42,10 @@ shared_ptr<Personaje> generarMagoAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arm
     };
     
     int magoIndex = rand() % tiposMagos.size();
-    return PersonajeFactory::crearPersonajeArmado(tiposMagos[magoIndex], armas);
+    return PersonajeFactory::crearPersonajeArmado(tiposMagos[magoIndex], std::move(armas));
 }
 
-shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
+shared_ptr<Personaje> generarGuerreroAleatorio(pair<unique_ptr<Arma>, unique_ptr<Arma>> armas) {
     vector<TipoPersonaje> tiposGuerreros = {
         TipoPersonaje::paladin,
         TipoPersonaje::barbaro,
@@ -55,10 +55,10 @@ shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr
     };
     
     int guerreroIndex = rand() % tiposGuerreros.size();
-    return PersonajeFactory::crearPersonajeArmado(tiposGuerreros[guerreroIndex], armas);
+    return PersonajeFactory::crearPersonajeArmado(tiposGuerreros[guerreroIndex], std::move(armas));
 }
 
-shared_ptr<Arma> generarArmaAleatoria() {
+unique_ptr<Arma> generarArmaAleatoria() {
     vector<TipoDeArma> armasCombate = {
         TipoDeArma::hacha,
         TipoDeArma::dobleHacha,
@@ -96,8 +96,8 @@ int main() {
     // Crear los magos
     vector<shared_ptr<Personaje>> magos;
     for (int config : magosConfig) {
-        shared_ptr<Arma> arma1 = nullptr;
-        shared_ptr<Arma> arma2 = nullptr;
+        unique_ptr<Arma> arma1 = nullptr;
+        unique_ptr<Arma> arma2 = nullptr;
 
         if (config == 1) {
             arma1 = generarArmaAleatoria();
@@ -106,15 +106,15 @@ int main() {
             arma2 = generarArmaAleatoria();
         }
 
-        pair<shared_ptr<Arma>, shared_ptr<Arma>> armas = {arma1, arma2};
-        magos.push_back(generarMagoAleatorio(armas));
+        pair<unique_ptr<Arma>, unique_ptr<Arma>> armas = {std::move(arma1), std::move(arma2)};
+        magos.push_back(generarMagoAleatorio(std::move(armas)));
     }
 
     // Crear los guerreros
     vector<shared_ptr<Personaje>> guerreros;
     for (int config : guerrerosConfig) {
-        shared_ptr<Arma> arma1 = nullptr;
-        shared_ptr<Arma> arma2 = nullptr;
+        unique_ptr<Arma> arma1 = nullptr;
+        unique_ptr<Arma> arma2 = nullptr;
 
         if (config == 1) {
             arma1 = generarArmaAleatoria();
@@ -123,8 +123,8 @@ int main() {
             arma2 = generarArmaAleatoria();
         }
 
-        pair<shared_ptr<Arma>, shared_ptr<Arma>> armas = {arma1, arma2};
-        guerreros.push_back(generarGuerreroAleatorio(armas));
+        pair<unique_ptr<Arma>, unique_ptr<Arma>> armas = {std::move(arma1), std::move(arma2)};
+        guerreros.push_back(generarGuerreroAleatorio(std::move(armas)));
     }
 
     // Mostrar información de los magos
@@ -132,7 +132,7 @@ int main() {
     for (size_t i = 0; i < magos.size(); ++i) {
         cout << "Mago " << i + 1 << " (" << nombrePersonaje(magos[i]) << "): ";
         if (magos[i]) {
-            auto armas = magos[i]->obtenerArmas();
+            const auto& armas = magos[i]->obtenerArmas();
             cout << "Arma 1: " << nombreArma(armas.first) << ", ";
             cout << "Arma 2: " << nombreArma(armas.second) << endl;
         } else {
@@ -145,7 +145,7 @@ int main() {
     for (size_t i = 0; i < guerreros.size(); ++i) {
         cout << "Guerrero " << i + 1 << " (" << nombrePersonaje(guerreros[i]) << "): ";
         if (guerreros[i]) {
-            auto armas = guerreros[i]->obtenerArmas();
+            const auto& armas = guerreros[i]->obtenerArmas();
             cout << "Arma 1: " << nombreArma(armas.first) << ", ";
             cout << "Arma 2: " << nombreArma(armas.second) << endl;
         } else {

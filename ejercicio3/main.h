@@ -14,6 +14,6 @@
 using namespace std;
 
 vector<vector<int>> generarAleatorio();
-shared_ptr<Personaje> generarMagoAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas);
-shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas);
-shared_ptr<Arma> generarArmaAleatoria();
+shared_ptr<Personaje> generarMagoAleatorio(pair<unique_ptr<Arma>, unique_ptr<Arma>> armas);
+shared_ptr<Personaje> generarGuerreroAleatorio(pair<unique_ptr<Arma>, unique_ptr<Arma>> armas);
+unique_ptr<Arma> generarArmaAleatoria();

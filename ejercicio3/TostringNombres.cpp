@@ -1,8 +1,7 @@
 #include "TostringNombres.h"
 
-
-string nombreArma(shared_ptr<Arma> arma) {
-    if (!arma) return "Sin arma";
+string nombreArma(const unique_ptr<Arma>& arma) {
+    if (!arma) return "ninguna";
 
     switch (arma->obtenerTipoArma()) { 
         case TipoDeArma::hacha: return "Hacha Simple";
@@ -18,7 +17,9 @@ string nombreArma(shared_ptr<Arma> arma) {
     }
 }
 
-string nombrePersonaje(shared_ptr<Personaje> personaje) {
+string nombrePersonaje(const shared_ptr<Personaje>& personaje) {
+    if (!personaje) return "Personaje nulo";
+    
     switch (personaje->obtenerTipo()) { 
         case TipoPersonaje::hechicero: return "Hechicero";
         case TipoPersonaje::nigromante: return "Nigromante";

@@ -35,8 +35,8 @@ using namespace std;
 
 class PersonajeFactory{
     public:
-        static shared_ptr<Arma> crearArma(TipoDeArma a);
+        static unique_ptr<Arma> crearArma(TipoDeArma a);
         static shared_ptr<Personaje> crearPersonaje(TipoPersonaje p);
-        static shared_ptr<Personaje> crearPersonajeArmado(TipoPersonaje p, pair<shared_ptr<Arma>, shared_ptr<Arma>> armas);
+        static shared_ptr<Personaje> crearPersonajeArmado(TipoPersonaje p, pair<unique_ptr<Arma>, unique_ptr<Arma>> armas);
            
 };

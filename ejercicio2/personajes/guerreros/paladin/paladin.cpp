@@ -1,15 +1,16 @@
 #include "paladin.h"
 
-Paladin::Paladin(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
-    : Guerrero(TipoPersonaje::paladin, 100, 150, false, {arma1, arma2}) {}
+Paladin::Paladin(unique_ptr<Arma> arma1, unique_ptr<Arma> arma2)
+    : Guerrero(
+        TipoPersonaje::paladin, 100, 150, false, pair<unique_ptr<Arma>, unique_ptr<Arma>>(std::move(arma1), std::move(arma2))) {}
 
-int Paladin::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
+int Paladin::habilidad(shared_ptr<Personaje> enemigo, unique_ptr<Arma> a) {
     if (!enemigo || !a) {
         cerr << "Error: enemigo o arma no válidos." << endl;
         return 0;
     }
     if (a->obtenerTipo() == ES::Magica) {
-        auto armaMagica = dynamic_pointer_cast<Magica>(a);
+        Magica* armaMagica = dynamic_cast<Magica*>(a.get());
         if (!armaMagica) {
             cerr << "Error: arma no es del tipo Magica." << endl;
             return 0;
@@ -21,7 +22,7 @@ int Paladin::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
         return danoTotal;
 
     } else if (a->obtenerTipo() == ES::Combate) {
-        auto armaCombate = dynamic_pointer_cast<Combate>(a);
+        Combate* armaCombate = dynamic_cast<Combate*>(a.get());
         if (!armaCombate) {
             cerr << "Error: arma no es del tipo Combate." << endl;
             return 0;
@@ -38,8 +39,8 @@ int Paladin::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
             enemigo->recibirDano(danoBase);
             return danoBase;
         }
-    } else {
-        cerr << "Error: tipo de arma no válido." << endl;
-        return 0;
     }
+
+    cerr << "Error: tipo de arma no válido." << endl;
+    return 0;
 }

@@ -1,25 +1,25 @@
 #include "PersonajeFactory.h"
 
-shared_ptr<Arma> PersonajeFactory::crearArma(TipoDeArma a) {
+unique_ptr<Arma> PersonajeFactory::crearArma(TipoDeArma a) {
     switch (a) {
         case TipoDeArma::espada:
-            return make_shared<Espada>();
+            return make_unique<Espada>();
         case TipoDeArma::hacha:
-            return make_shared<HachaSimple>();
+            return make_unique<HachaSimple>();
         case TipoDeArma::garrote:
-            return make_shared<Garrote>();
+            return make_unique<Garrote>();
         case TipoDeArma::lanza:
-            return make_shared<Lanza>();
+            return make_unique<Lanza>();
         case TipoDeArma::dobleHacha:
-            return make_shared<HachaDoble>();
+            return make_unique<HachaDoble>();
         case TipoDeArma::baston:
-            return make_shared<Baston>();
+            return make_unique<Baston>();
         case TipoDeArma::amuleto:
-            return make_shared<Amuleto>();
+            return make_unique<Amuleto>();
         case TipoDeArma::libroDeHechizos:
-            return make_shared<LibroDeHechizos>();
+            return make_unique<LibroDeHechizos>();
         case TipoDeArma::pocion:
-            return make_shared<Pocion>();
+            return make_unique<Pocion>();
         default:
             cout << "Error: Tipo de arma no reconocido." << endl;
             return nullptr;
@@ -29,7 +29,7 @@ shared_ptr<Arma> PersonajeFactory::crearArma(TipoDeArma a) {
 shared_ptr<Personaje> PersonajeFactory::crearPersonaje(TipoPersonaje p) {
     switch (p) {
         case TipoPersonaje::barbaro:
-            return make_shared<barbaro>(nullptr, nullptr);
+            return make_shared<Barbaro>(nullptr, nullptr);
         case TipoPersonaje::paladin:
             return make_shared<Paladin>(nullptr, nullptr);
         case TipoPersonaje::gladiador:
@@ -52,26 +52,26 @@ shared_ptr<Personaje> PersonajeFactory::crearPersonaje(TipoPersonaje p) {
     }
 }
 
-shared_ptr<Personaje> PersonajeFactory::crearPersonajeArmado(TipoPersonaje p, pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
+shared_ptr<Personaje> PersonajeFactory::crearPersonajeArmado(TipoPersonaje p, pair<unique_ptr<Arma>, unique_ptr<Arma>> armas) {
     switch (p) {
         case TipoPersonaje::barbaro:
-            return make_shared<barbaro>(armas.first, armas.second);
+            return make_shared<Barbaro>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::paladin:
-            return make_shared<Paladin>(armas.first, armas.second);
+            return make_shared<Paladin>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::gladiador:
-            return make_shared<Gladiador>(armas.first, armas.second);
+            return make_shared<Gladiador>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::caballero:
-            return make_shared<Caballero>(armas.first, armas.second);
+            return make_shared<Caballero>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::mercenario:
-            return make_shared<Mercenario>(armas.first, armas.second);
+            return make_shared<Mercenario>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::hechicero:
-            return make_shared<Hechicero>(armas.first, armas.second);
+            return make_shared<Hechicero>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::conjurador:
-            return make_shared<Conjurador>(armas.first, armas.second);
+            return make_shared<Conjurador>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::brujo:
-            return make_shared<Brujo>(armas.first, armas.second);
+            return make_shared<Brujo>(std::move(armas.first), std::move(armas.second));
         case TipoPersonaje::nigromante:
-            return make_shared<Nigromante>(armas.first, armas.second);
+            return make_shared<Nigromante>(std::move(armas.first), std::move(armas.second));
         default:
             cout << "Error: Tipo de personaje no reconocido." << endl;
             return nullptr;

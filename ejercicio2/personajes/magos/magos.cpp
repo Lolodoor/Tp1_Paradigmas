@@ -1,8 +1,8 @@
 #include "magos.h"
 
 Magos::Magos(TipoPersonaje tipo, int vida, int mana, bool muerto, 
-             pair<shared_ptr<Arma>, shared_ptr<Arma>> armas)
-    : tipo(tipo), vida(vida), mana(mana), armas(armas), muerto(muerto) {}
+             pair<unique_ptr<Arma>, unique_ptr<Arma>> armas)
+    : tipo(tipo), vida(vida), mana(mana), armas(std::move(armas)), muerto(muerto) {}
 
     
 int Magos::obtenerVida() const {
@@ -31,17 +31,17 @@ void Magos::curar(int curacion) {
     }
 }
 
-void Magos::equiparArma(shared_ptr<Arma> arma) {
-    if (armas.first == nullptr) {
-        armas.first = arma;
-    } else if (armas.second == nullptr) {
-        armas.second = arma;
+void Magos::equiparArma(unique_ptr<Arma> arma) {
+    if (!armas.first) {
+        armas.first = std::move(arma);
+    } else if (!armas.second) {
+        armas.second = std::move(arma);
     } else {
-        cout << "ya tiene las dos armas" << endl;
+        armas.first = std::move(arma);
     }
 }
 
-pair<shared_ptr<Arma>, shared_ptr<Arma>> Magos::obtenerArmas() const {
+pair<unique_ptr<Arma>, unique_ptr<Arma>>& Magos::obtenerArmas() {
     return armas;
 }
 

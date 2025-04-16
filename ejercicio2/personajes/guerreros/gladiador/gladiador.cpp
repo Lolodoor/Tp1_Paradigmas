@@ -1,39 +1,45 @@
 #include "gladiador.h"
 
-Gladiador::Gladiador(shared_ptr<Arma> arma1, shared_ptr<Arma> arma2)
-    : Guerrero(TipoPersonaje::gladiador, 100, 150, false, {arma1, arma2}) {}
+Gladiador::Gladiador(unique_ptr<Arma> arma1, unique_ptr<Arma> arma2)
+    : Guerrero(TipoPersonaje::gladiador, 100, 150, false, pair<unique_ptr<Arma>, unique_ptr<Arma>>(std::move(arma1), std::move(arma2))) {}
 
-int Gladiador::habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) {
+int Gladiador::habilidad(shared_ptr<Personaje> enemigo, unique_ptr<Arma> a) {
     if (!enemigo || !a) {
         cerr << "Error: enemigo o arma no válidos." << endl;
         return 0;
     }
 
     if (a->obtenerTipo() == ES::Magica) {
-        auto armaMagica = dynamic_pointer_cast<Magica>(a);
+        Magica* armaMagica = dynamic_cast<Magica*>(a.get());
         if (!armaMagica) {
             cerr << "Error: arma no es del tipo Magica." << endl;
             return 0;
         }
+
         int danoBase = armaMagica->obtenerDano();
-        int danoReducido = danoBase * 0.8; // Reduce el daño recibido en un 20%
-        enemigo->recibirDano(danoReducido * 0.8); 
-        return danoReducido;
+        enemigo->recibirDano(danoBase);
+        return danoBase;
 
     } else if (a->obtenerTipo() == ES::Combate) {
-        auto armaCombate = dynamic_pointer_cast<Combate>(a);
+        Combate* armaCombate = dynamic_cast<Combate*>(a.get());
         if (!armaCombate) {
             cerr << "Error: arma no es del tipo Combate." << endl;
             return 0;
         }
 
-        int danoBase = armaCombate->obtenerDano();
-        int danoIncrementado = danoBase * 1.3; // Incrementa el daño en un 30% con armas de combate
-        enemigo->recibirDano(danoIncrementado);
-        return danoIncrementado;
-    } else {
-        cerr << "Error: tipo de arma no válido." << endl;
-        return 0;
+        if (armaCombate->obtenerTipoArma() == TipoDeArma::lanza) {
+            int danoBase = armaCombate->obtenerDano();
+            int danoTotal = danoBase * 2; // Doble daño con lanza
+            enemigo->recibirDano(danoTotal);
+            return danoTotal;
+        } else {
+            int danoBase = armaCombate->obtenerDano();
+            enemigo->recibirDano(danoBase);
+            return danoBase;
+        }
     }
+
+    cerr << "Error: tipo de arma no válido." << endl;
+    return 0;
 }
 

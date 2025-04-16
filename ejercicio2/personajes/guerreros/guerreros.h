@@ -7,21 +7,21 @@ class Guerrero : public Personaje {
         TipoPersonaje tipo;
         int vida; 
         int energia;
-        pair<shared_ptr<Arma>, shared_ptr<Arma>> armas;
+        pair<unique_ptr<Arma>, unique_ptr<Arma>> armas;
         bool muerto;
     public:
         Guerrero(TipoPersonaje tipo, int vida, int energia, bool muerto, 
-                 pair<shared_ptr<Arma>, shared_ptr<Arma>> armas);
+                 pair<unique_ptr<Arma>, unique_ptr<Arma>> armas);
 
         int obtenerVida() const override;
         TipoPersonaje obtenerTipo() const override;
         void recibirDano(int dano) override;
         void curar(int curacion) override;
-        pair<shared_ptr<Arma>, shared_ptr<Arma>> obtenerArmas() const override;
-        void equiparArma(shared_ptr<Arma> arma) override;
+        pair<unique_ptr<Arma>, unique_ptr<Arma>>& obtenerArmas() override;
+        void equiparArma(unique_ptr<Arma> arma) override;
         bool estaMuerto() override;
         int obtenerEnergia() const;
-        virtual int habilidad(shared_ptr<Personaje> enemigo, shared_ptr<Arma> a) = 0;
+        virtual int habilidad(shared_ptr<Personaje> enemigo, unique_ptr<Arma> a) = 0;
         
 
 };

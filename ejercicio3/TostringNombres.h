@@ -12,5 +12,5 @@
 
 // con estas funciones se convierten los enums a string para imprimirlos
 
-string nombreArma(shared_ptr<Arma> arma);
-string nombrePersonaje(shared_ptr<Personaje> personaje);
+string nombreArma(const unique_ptr<Arma>& arma);
+string nombrePersonaje(const shared_ptr<Personaje>& personaje);
