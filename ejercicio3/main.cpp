@@ -34,72 +34,54 @@ vector<vector<int>> generarAleatorio() {
 }
 
 shared_ptr<Personaje> generarMagoAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
-    int magoIndex = rand() % 4; // random para elegir entre los 4 tipos de magos
-
+    vector<TipoPersonaje> tiposMagos = {
+        TipoPersonaje::hechicero,
+        TipoPersonaje::nigromante,
+        TipoPersonaje::conjurador,
+        TipoPersonaje::brujo
+    };
     
-    shared_ptr<Arma> arma1 = armas.first;
-    shared_ptr<Arma> arma2 = armas.second;
-
-    switch (magoIndex) {
-        case 0:
-            return make_shared<Hechicero>(arma1, arma2);
-        case 1:
-            return make_shared<Nigromante>(arma1, arma2);
-        case 2:
-            return make_shared<Conjurador>(arma1, arma2);
-        case 3:
-            return make_shared<Brujo>(arma1, arma2);
-        default:
-            return nullptr;
-    }
+    int magoIndex = rand() % tiposMagos.size();
+    return PersonajeFactory::crearPersonajeArmado(tiposMagos[magoIndex], armas);
 }
 
 shared_ptr<Personaje> generarGuerreroAleatorio(pair<shared_ptr<Arma>, shared_ptr<Arma>> armas) {
-    int guerreroIndex = rand() % 5; // random para elegir entre los 5 tipos de guerreros
-
+    vector<TipoPersonaje> tiposGuerreros = {
+        TipoPersonaje::paladin,
+        TipoPersonaje::barbaro,
+        TipoPersonaje::caballero,
+        TipoPersonaje::mercenario,
+        TipoPersonaje::gladiador
+    };
     
-    shared_ptr<Arma> arma1 = armas.first;
-    shared_ptr<Arma> arma2 = armas.second;
-
-    switch (guerreroIndex) {
-        case 0:
-            return make_shared<Paladin>(arma1, arma2);
-        case 1:
-            return make_shared<barbaro>(arma1, arma2);
-        case 2:
-            return make_shared<Caballero>(arma1, arma2);
-        case 3:
-            return make_shared<Mercenario>(arma1, arma2);
-        case 4:  
-            return make_shared<Gladiador>(arma1, arma2);
-        default:
-            // Este caso nunca debería ocurrir, pero lo manejamos por seguridad
-            cout << "Error: Índice de guerrero inválido (" << guerreroIndex << ")." << endl;
-            return nullptr;
-    }
+    int guerreroIndex = rand() % tiposGuerreros.size();
+    return PersonajeFactory::crearPersonajeArmado(tiposGuerreros[guerreroIndex], armas);
 }
 
 shared_ptr<Arma> generarArmaAleatoria() {
+    vector<TipoDeArma> armasCombate = {
+        TipoDeArma::hacha,
+        TipoDeArma::dobleHacha,
+        TipoDeArma::espada,
+        TipoDeArma::lanza,
+        TipoDeArma::garrote
+    };
+
+    vector<TipoDeArma> armasMagicas = {
+        TipoDeArma::pocion,
+        TipoDeArma::amuleto,
+        TipoDeArma::baston,
+        TipoDeArma::libroDeHechizos
+    };
+
     int tipoArma = rand() % 2; // 0 para combate, 1 para mágica
     if (tipoArma == 0) {
-        int armaIndex = rand() % 5; // 5 tipos de armas de combate
-        switch (armaIndex) {
-            case 0: return make_shared<HachaSimple>();
-            case 1: return make_shared<HachaDoble>();
-            case 2: return make_shared<Espada>();
-            case 3: return make_shared<Lanza>();
-            case 4: return make_shared<Garrote>();
-        }
+        int armaIndex = rand() % armasCombate.size();
+        return PersonajeFactory::crearArma(armasCombate[armaIndex]);
     } else {
-        int armaIndex = rand() % 4; // 4 tipos de armas mágicas
-        switch (armaIndex) {
-            case 0: return make_shared<Pocion>();
-            case 1: return make_shared<Amuleto>();
-            case 2: return make_shared<Baston>();
-            case 3: return make_shared<LibroDeHechizos>();
-        }
+        int armaIndex = rand() % armasMagicas.size();
+        return PersonajeFactory::crearArma(armasMagicas[armaIndex]);
     }
-    return nullptr;
 }
 
 int main() {
