@@ -50,11 +50,11 @@ shared_ptr<Personaje> crearPersonajeRival() {
     // el personaje rival es random y el arma que porta tambien
     srand(static_cast<unsigned int>(time(0))); 
     TipoPersonaje tipo = static_cast<TipoPersonaje>(rand() % 9); 
-    shared_ptr<Arma> arma = PersonajeFactory::crearArma(static_cast<TipoDeArma>(rand() % 9));
-    return PersonajeFactory::crearPersonajeArmado(tipo, {arma, nullptr});
+    unique_ptr<Arma> arma = PersonajeFactory::crearArma(static_cast<TipoDeArma>(rand() % 9));
+    return PersonajeFactory::crearPersonajeArmado(tipo, make_pair(std::move(arma), nullptr));
 }
 
-shared_ptr<Arma> crearArmaJugador() {
+unique_ptr<Arma> crearArmaJugador() {
     int opcion;
     cout << "Elige tu arma:\n";
     cout << "1. Espada\n";
@@ -99,7 +99,7 @@ shared_ptr<Personaje> crearPersonajeJugador() {
     cout << "9. Nigromante\n";
     cin >> opcion;
 
-    shared_ptr<Arma> arma = crearArmaJugador();
+    unique_ptr<Arma> arma = crearArmaJugador();
     // se crea el arma segun lo que elige el jugador
     if (!arma) {
         cout << "Error al crear el arma. Saliendo del programa.\n";
@@ -107,15 +107,15 @@ shared_ptr<Personaje> crearPersonajeJugador() {
     }
     switch (opcion) {
         // segun lo que elige el jugador se crea ese personaje con el arma que eligio antes
-        case 1: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::barbaro, {arma, nullptr});
-        case 2: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::paladin, {arma, nullptr});
-        case 3: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::gladiador, {arma, nullptr});
-        case 4: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::caballero, {arma, nullptr});
-        case 5: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::mercenario, {arma, nullptr});
-        case 6: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::hechicero, {arma, nullptr});
-        case 7: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::conjurador, {arma, nullptr});
-        case 8: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::brujo, {arma, nullptr});
-        case 9: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::nigromante, {arma, nullptr});
+        case 1: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::barbaro, make_pair(std::move(arma), nullptr));
+        case 2: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::paladin, make_pair(std::move(arma), nullptr));
+        case 3: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::gladiador, make_pair(std::move(arma), nullptr));
+        case 4: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::caballero, make_pair(std::move(arma), nullptr));
+        case 5: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::mercenario, make_pair(std::move(arma), nullptr));
+        case 6: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::hechicero, make_pair(std::move(arma), nullptr));
+        case 7: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::conjurador, make_pair(std::move(arma), nullptr));
+        case 8: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::brujo, make_pair(std::move(arma), nullptr));
+        case 9: return PersonajeFactory::crearPersonajeArmado(TipoPersonaje::nigromante, make_pair(std::move(arma), nullptr));
         default:
             cout << "Opción inválida.\n";
             return nullptr;
@@ -132,11 +132,11 @@ void resolverRonda(shared_ptr<Personaje> jugador1, shared_ptr<Personaje> jugador
         return;
     }
 
-    auto armaJugador1 = jugador1->obtenerArmas().first;
-    auto armaJugador2 = jugador2->obtenerArmas().first;
+    const auto& armasJugador1 = jugador1->obtenerArmas();
+    const auto& armasJugador2 = jugador2->obtenerArmas();
 
-    string nombreArma1 = armaJugador1 ? nombreArma(armaJugador1) : "Sin Arma"; // paso a string el nombre del arma para imprimirlo
-    string nombreArma2 = armaJugador2 ? nombreArma(armaJugador2) : "Sin Arma";
+    string nombreArma1 = armasJugador1.first ? nombreArma(armasJugador1.first) : "Sin Arma"; // paso a string el nombre del arma para imprimirlo
+    string nombreArma2 = armasJugador2.first ? nombreArma(armasJugador2.first) : "Sin Arma";
 
     string tipoJugador1 = nombrePersonaje(jugador1); // paso a string el nombre del personaje para imprimirlo
     string tipoJugador2 = nombrePersonaje(jugador2);

@@ -13,6 +13,6 @@ string AtaqueToString(Ataque a);
 Ataque obtenerAtaqueJugador1();
 Ataque obtenerAtaqueJugador2();
 shared_ptr<Personaje> crearPersonajeRival();
-shared_ptr<Arma> crearArmaJugador() ;
+unique_ptr<Arma> crearArmaJugador() ;
 shared_ptr<Personaje> crearPersonajeJugador();
 void resolverRonda(shared_ptr<Personaje> jugador1, shared_ptr<Personaje> jugador2, Ataque ataque1, Ataque ataque2);
